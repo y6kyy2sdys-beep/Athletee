@@ -1,0 +1,19 @@
+{
+  "name": "Athletee — Hybrid Athlete Coach",
+  "short_name": "Athletee",
+  "description": "Dein persönliches Fitness-, Ernährungs- und Mindset-Dashboard mit KI-Coach.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0A0A0F",
+  "theme_color": "#0A0A0F",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

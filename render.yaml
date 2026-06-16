@@ -1,0 +1,16 @@
+# Render Blueprint — Ein-Klick-Deploy für Athletee
+# Auf render.com:  New  →  Blueprint  →  dieses Repo auswählen.
+# Render liest diese Datei automatisch und richtet alles ein —
+# du musst nur noch deinen ANTHROPIC_API_KEY eintragen.
+services:
+  - type: web
+    name: athletee
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false        # wird beim Deploy abgefragt, NIE im Repo gespeichert
+      - key: STEPS_TOKEN
+        sync: false        # optional: eigenes Passwort für die Apple-Health-Schnittstelle
