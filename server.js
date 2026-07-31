@@ -8,7 +8,12 @@ const path = require('path');
 
 const app = express();
 app.use(express.json({ limit: '15mb' }));
-app.use(express.static(__dirname));
+app.use(express.static(__dirname, {
+  setHeaders: (res, filePath) => {
+    // App-Seite & Service Worker nie im Browser-HTTP-Cache festhalten — Updates sofort sichtbar
+    if (filePath.endsWith('.html') || filePath.endsWith('sw.js')) res.setHeader('Cache-Control', 'no-cache');
+  }
+}));
 
 const API_KEY = process.env.ANTHROPIC_API_KEY;
 const STEPS_TOKEN = process.env.STEPS_TOKEN || 'athletee'; // für Apple-Kurzbefehl

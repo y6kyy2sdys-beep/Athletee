@@ -7,7 +7,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Athletee">
-<meta name="theme-color" content="#0A0A0F">
+<meta name="theme-color" content="#03060A">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon.svg">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -15,16 +15,17 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  --bg:#0E0C0B;--bg2:#1B1714;--bg3:#262019;--bg4:#322A20;
-  --blue:#FF7A1A;--red:#E8334A;--green:#22C55E;--amber:#F5A623;--purple:#8B5CF6;--water:#3B9EFF;--orange:#FF7A1A;
-  --text:#F0F2F8;--muted:#8890A4;--border:#2A2A3A;
+  --bg:#03060A;--bg2:#0A121C;--bg3:#101B29;--bg4:#172536;
+  --blue:#00C8FF;--red:#FF3B5C;--green:#2EE6A8;--amber:#FFB020;--purple:#8B5CF6;--water:#4FC3F7;--orange:#FFB020;
+  --text:#E8F4FF;--muted:#7C93AC;--border:#1B2B3E;
   --safe-top:env(safe-area-inset-top,0px);
   --safe-bottom:env(safe-area-inset-bottom,0px);
 }
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow:hidden}
-#app{display:flex;flex-direction:column;height:100%;height:100dvh}
-.header{background:var(--bg2);border-bottom:1px solid var(--border);padding:calc(var(--safe-top) + 10px) 16px 10px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.logo{font-size:18px;font-weight:800;letter-spacing:1px}.logo span{color:var(--blue)}
+#app{display:flex;flex-direction:column;height:100%;height:100dvh;position:relative}
+#app::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,200,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,255,.03) 1px,transparent 1px);background-size:34px 34px;pointer-events:none}
+.header{background:var(--bg2);border-bottom:1px solid var(--border);box-shadow:0 1px 0 rgba(0,200,255,.12);padding:calc(var(--safe-top) + 10px) 16px 10px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.logo{font-size:18px;font-weight:800;letter-spacing:2.5px}.logo span{color:var(--blue);text-shadow:0 0 12px rgba(0,200,255,.6)}
 .header-date{font-size:11px;color:var(--muted);margin-top:1px}
 .header-right{display:flex;align-items:center;gap:10px}
 .coach-dot{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--green);font-weight:600}
@@ -37,11 +38,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:-apple-
 .nav-item.active{color:var(--blue)}
 .nav-icon{font-size:20px;line-height:1}
 .nav-item.center{position:relative}
-.nav-center-btn{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#FF9A3D,var(--blue));display:flex;align-items:center;justify-content:center;font-size:24px;margin-top:-26px;box-shadow:0 6px 20px rgba(255,122,26,.5);border:3px solid var(--bg2)}
-.nav-item.center.active .nav-center-btn{box-shadow:0 6px 24px rgba(255,122,26,.75)}
+.nav-center-btn{width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#0A84B8,var(--blue));display:flex;align-items:center;justify-content:center;font-size:24px;margin-top:-26px;box-shadow:0 0 22px rgba(0,200,255,.55);border:3px solid var(--bg2)}
+.nav-item.center.active .nav-center-btn{box-shadow:0 0 30px rgba(0,200,255,.85)}
 .nav-center-lbl{margin-top:2px}
-.card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:12px}
-.card-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.card{background:linear-gradient(180deg,rgba(0,200,255,.04),rgba(0,200,255,0) 42%),var(--bg2);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:12px}
+.card-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4EC6EA;margin-bottom:10px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
 .stat-card{background:var(--bg3);border-radius:12px;padding:12px;border:1px solid var(--border)}
 .stat-label{font-size:10px;color:var(--muted);margin-bottom:3px}
@@ -130,8 +131,8 @@ select option{background:var(--bg3)}
 .meal-entry{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;gap:8px}
 .meal-entry:last-child{border-bottom:none}
 .meal-del{color:var(--muted);font-size:14px;cursor:pointer;flex-shrink:0}
-.coach-banner{background:rgba(30,111,255,.08);border:1px solid rgba(30,111,255,.2);border-radius:12px;padding:12px;margin-bottom:12px;display:flex;gap:10px}
-.coach-avatar{width:32px;height:32px;border-radius:50%;background:rgba(30,111,255,.2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.coach-banner{background:rgba(0,200,255,.07);border:1px solid rgba(0,200,255,.22);border-radius:12px;padding:12px;margin-bottom:12px;display:flex;gap:10px}
+.coach-avatar{width:32px;height:32px;border-radius:50%;background:rgba(0,200,255,.16);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;filter:drop-shadow(0 0 6px rgba(0,200,255,.5))}
 .coach-quote{font-size:12px;color:#7db4f5;line-height:1.5;font-style:italic}
 .coach-name{font-size:10px;color:var(--muted);margin-top:3px;font-weight:700;letter-spacing:.5px}
 .photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
@@ -232,7 +233,7 @@ select option{background:var(--bg3)}
 .stat-card{cursor:pointer;transition:transform .08s ease,border-color .15s}
 .stat-card:active{transform:scale(.97);border-color:var(--blue)}
 /* AGENDA */
-.agenda-card{background:linear-gradient(135deg,rgba(255,122,26,.14),rgba(245,166,35,.05));border-color:rgba(255,122,26,.3)}
+.agenda-card{background:linear-gradient(135deg,rgba(0,200,255,.13),rgba(10,132,184,.04));border-color:rgba(0,200,255,.3)}
 .agenda-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:8px}
 .agenda-title{font-size:15px;font-weight:800}
 .agenda-sub{font-size:11px;color:var(--muted);margin-top:2px}
@@ -249,9 +250,43 @@ select option{background:var(--bg3)}
 .plan-edit-row{display:grid;grid-template-columns:80px 1fr 1fr 26px;gap:5px;margin-bottom:5px;align-items:center}
 .plan-edit-row input,.plan-edit-row select{padding:7px 6px;font-size:12px}
 .plan-edit-del{background:none;border:none;color:var(--red);font-size:15px;cursor:pointer;padding:0}
+/* BOOT (Batcomputer) */
+#boot{position:fixed;inset:0;background:#020409;z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px;text-align:center;transition:opacity .55s}
+#boot.hide{opacity:0;pointer-events:none}
+#boot::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 2px,rgba(0,200,255,.035) 2px 4px);pointer-events:none}
+.boot-bat{font-size:38px;margin-bottom:14px;filter:drop-shadow(0 0 16px rgba(0,200,255,.8))}
+.boot-logo{font-size:20px;font-weight:900;letter-spacing:5px;color:var(--blue);text-shadow:0 0 18px rgba(0,200,255,.8);margin-bottom:28px}
+.boot-quote{font-size:16px;line-height:1.65;color:#CFE9F7;font-style:italic;max-width:320px;animation:bootIn 1.1s ease}
+.boot-author{margin-top:12px;font-size:10px;letter-spacing:2.5px;color:var(--muted);text-transform:uppercase;animation:bootIn 1.6s ease}
+.boot-bar{margin-top:34px;width:190px;height:2px;background:#0D2438;overflow:hidden;border-radius:2px}
+.boot-bar div{height:100%;width:40%;background:var(--blue);box-shadow:0 0 12px var(--blue);animation:bootScan 1.3s infinite linear}
+@keyframes bootScan{0%{transform:translateX(-110%)}100%{transform:translateX(400%)}}
+@keyframes bootIn{from{opacity:0;transform:translateY(9px)}to{opacity:1}}
+/* QUICKBAR */
+.quickbar{display:flex;gap:8px;margin-bottom:12px}
+.quickbar button{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:9px 2px;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:17px;color:var(--text);font-family:inherit;cursor:pointer;transition:transform .08s}
+.quickbar button:active{transform:scale(.94);border-color:var(--blue)}
+.quickbar span{font-size:9px;color:var(--muted)}
+/* PRINT (PDF) */
+#print-area{display:none}
+@media print{
+  body{background:#fff}
+  #app,#toast-wrap,#boot,.modal{display:none!important}
+  #print-area{display:block!important;color:#000;font-size:13px;line-height:1.6;padding:8px}
+  #print-area h1{font-size:19px;margin-bottom:2px}
+  #print-area .pr-meta{color:#555;font-size:11px;margin-bottom:16px;letter-spacing:1px}
+  #print-area pre{white-space:pre-wrap;font-family:inherit}
+}
 </style>
 </head>
 <body>
+<div id="boot">
+  <div class="boot-bat">🦇</div>
+  <div class="boot-logo">ATHLETEE</div>
+  <div class="boot-quote" id="boot-quote"></div>
+  <div class="boot-author" id="boot-author"></div>
+  <div class="boot-bar"><div></div></div>
+</div>
 <div id="app">
 
 <div class="header">
@@ -260,23 +295,32 @@ select option{background:var(--bg3)}
     <div class="header-date" id="header-date"></div>
   </div>
   <div class="header-right">
-    <div class="coach-dot"><div class="dot"></div>Coach aktiv</div>
+    <div class="coach-dot"><div class="dot"></div>Alfred bereit</div>
+    <button class="icon-btn" onclick="openCustomize()" title="Dashboard anpassen">🎛️</button>
     <button class="icon-btn" onclick="openProfile()" title="Profil">⚙️</button>
   </div>
 </div>
 
 <!-- ═══ ÜBERSICHT / START ═══ -->
 <div id="tab-overview" class="content active">
-  <div class="coach-banner">
-    <div class="coach-avatar">🎯</div>
+  <div class="coach-banner" data-card="banner">
+    <div class="coach-avatar">🦇</div>
     <div>
-      <div class="coach-quote" id="banner-quote">Willkommen zurück. Dein Coach macht sich bereit…</div>
-      <div class="coach-name">DEIN ATHLETEE-COACH</div>
+      <div class="coach-quote" id="banner-quote">Guten Tag, Master Wayne. Alfred bereitet Ihre Übersicht vor…</div>
+      <div class="coach-name">ALFRED · IHR BUTLER & COACH</div>
     </div>
   </div>
 
+  <div class="quickbar" data-card="quickbar">
+    <button onclick="qbFocus('new-weight')">⚖️<span>Gewicht</span></button>
+    <button onclick="qbFocus('sleep-hours')">😴<span>Schlaf</span></button>
+    <button onclick="addWater(1)">💧<span>+0,25 L</span></button>
+    <button onclick="navTo('ernaehrung')">🍗<span>Essen</span></button>
+    <button onclick="navTo('training')">💪<span>Training</span></button>
+  </div>
+
   <!-- AGENDA HEUTE -->
-  <div class="card agenda-card">
+  <div class="card agenda-card" data-card="agenda">
     <div class="agenda-head">
       <div>
         <div class="agenda-title" id="agenda-day">Heute</div>
@@ -287,7 +331,7 @@ select option{background:var(--bg3)}
     <div id="agenda-timeline"></div>
   </div>
 
-  <div class="grid2">
+  <div class="grid2" data-card="stats">
     <div class="stat-card" onclick="navTo('progress');showSub('pr','gewicht',document.querySelectorAll('#tab-progress .sub-tab')[0])">
       <div class="stat-label">Gewicht ›</div>
       <div class="stat-val" id="cur-weight-val">–<span class="stat-unit">kg</span></div>
@@ -311,7 +355,7 @@ select option{background:var(--bg3)}
   </div>
 
   <!-- KALORIENBUDGET -->
-  <div class="card">
+  <div class="card" data-card="budget">
     <div class="card-title">🍽️ Kalorienbudget heute</div>
     <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:10px">
       <div>
@@ -329,7 +373,7 @@ select option{background:var(--bg3)}
   </div>
 
   <!-- DEFIZIT-STREAK -->
-  <div class="card">
+  <div class="card" data-card="deficit">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
       <div class="card-title" style="margin:0">📉 Kaloriendefizit — 14 Tage</div>
       <span style="font-size:16px;font-weight:800" id="deficit-streak">0 Tage 🔥</span>
@@ -337,12 +381,12 @@ select option{background:var(--bg3)}
     <div id="deficit-chart"></div>
     <div style="font-size:10px;color:var(--muted);margin-top:4px;text-align:center">Grün = im Defizit (unter Verbrauch) · Rot = drüber · grau = nicht getrackt</div>
     <div id="deficit-detail"></div>
-    <button class="btn-primary purple" style="margin-top:10px" onclick="analyzeDeficit()" id="deficit-ai-btn">🤖 Bin ich auf Kurs?</button>
+    <button class="btn-primary purple" style="margin-top:10px" onclick="analyzeDeficit()" id="deficit-ai-btn">🦇 Alfred: Bin ich auf Kurs?</button>
     <div class="purple-box" id="deficit-ai" style="display:none;margin-top:10px"></div>
   </div>
 
   <!-- SCHRITTE -->
-  <div class="card">
+  <div class="card" data-card="steps">
     <div class="card-title">👟 Schritte — Letzte 7 Tage</div>
     <div class="s-chart" id="s-chart"></div>
     <div class="s-labels" id="s-labels"></div>
@@ -354,7 +398,7 @@ select option{background:var(--bg3)}
   </div>
 
   <!-- WASSER -->
-  <div class="card">
+  <div class="card" data-card="water">
     <div class="card-title">💧 Wasser — Ziel mind. 2 L/Tag</div>
     <div class="water-dots" id="water-dots"></div>
     <div class="progress-bar" style="margin-top:12px"><div class="progress-fill" id="water-fill" style="width:0%;background:var(--water)"></div></div>
@@ -368,7 +412,7 @@ select option{background:var(--bg3)}
   </div>
 
   <!-- SCHLAF & ERHOLUNG -->
-  <div class="card">
+  <div class="card" data-card="sleep">
     <div class="card-title">😴 Schlaf & Erholung</div>
     <div class="readiness">
       <div class="ready-ring" id="ready-ring" style="border-color:var(--muted);color:var(--muted)">–</div>
@@ -381,11 +425,14 @@ select option{background:var(--bg3)}
         <select id="sleep-quality"><option value="3">Okay</option><option value="1">Schlecht</option><option value="2">Mittel</option><option value="4">Gut</option><option value="5">Top</option></select>
       </div>
     </div>
+    <div class="form-group"><label class="form-label">Datum (für Nachträge änderbar)</label><input type="date" id="sleep-date"></div>
     <button class="btn-sm blue" style="width:100%" onclick="logSleep()">Schlaf speichern</button>
+    <div id="sleep-chart" style="margin-top:12px"></div>
+    <div id="sleep-list"></div>
   </div>
 
   <!-- STREAK -->
-  <div class="card">
+  <div class="card" data-card="streak">
     <div class="card-title">🔥 Wochen-Streak</div>
     <div class="streak-row" id="streak-row"></div>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">
@@ -395,7 +442,7 @@ select option{background:var(--bg3)}
   </div>
 
   <!-- TAGES-CHECKLISTE -->
-  <div class="card">
+  <div class="card" data-card="checklist">
     <div class="card-title">✅ Heutige Aufgaben</div>
     <div id="daily-checklist"></div>
     <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center">
@@ -405,13 +452,13 @@ select option{background:var(--bg3)}
   </div>
 
   <!-- WOCHENZIELE -->
-  <div class="card">
+  <div class="card" data-card="weekgoals">
     <div class="card-title">🎯 Wochenziele — Einheiten</div>
     <div id="week-goals"></div>
   </div>
 
   <!-- GEWICHT -->
-  <div class="card">
+  <div class="card" data-card="weight">
     <div class="card-title">⚖️ Gewicht — Verlauf</div>
     <div style="position:relative">
       <div class="weight-pop" id="weight-pop" onclick="openPrognose()" style="display:none"></div>
@@ -425,7 +472,7 @@ select option{background:var(--bg3)}
   </div>
 
   <!-- WOCHENPLAN -->
-  <div class="card">
+  <div class="card" data-card="plan">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
       <div class="card-title" style="margin:0">📅 Dein Wochenplan</div>
       <button class="btn-sm" onclick="openPlanEditor()">✏️ Bearbeiten</button>
@@ -434,7 +481,7 @@ select option{background:var(--bg3)}
   </div>
 
   <!-- SCHNELLSTART -->
-  <div class="card">
+  <div class="card" data-card="quickstart">
     <div class="card-title">⚡ Schnellstart Training</div>
     <div id="quickstart"></div>
   </div>
@@ -483,6 +530,10 @@ select option{background:var(--bg3)}
         <label class="form-label">Notizen</label>
         <textarea id="tr-notiz" placeholder="Wie war die Einheit? Was hast du gemacht?"></textarea>
       </div>
+      <div style="display:grid;grid-template-columns:1fr auto;gap:8px;margin-bottom:10px;align-items:end">
+        <div><label class="form-label">Kalorien (leer = Formel-Schätzung)</label><input type="number" id="tr-kcal" placeholder="auto"></div>
+        <button class="btn-sm purple" style="height:40px" id="tr-ai-btn" onclick="aiEstimateWorkout()">🦇 KI schätzen</button>
+      </div>
       <div id="tr-kcal-est" class="success-box" style="margin-bottom:10px;display:none"></div>
       <button class="btn-primary" onclick="saveWorkout()">Einheit speichern</button>
     </div>
@@ -516,7 +567,11 @@ select option{background:var(--bg3)}
 
   <div id="tr-verlauf" class="sub-section">
     <div class="card">
-      <div class="card-title">Letzte Einheiten</div>
+      <div class="card-title">🔥 Trainingslast — 14 Tage (kcal)</div>
+      <div id="load-chart"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Letzte Einheiten — antippen zum Bearbeiten</div>
       <div id="workout-list"><div style="color:var(--muted);font-size:13px;text-align:center;padding:24px">Noch keine Einheiten</div></div>
     </div>
   </div>
@@ -620,8 +675,8 @@ select option{background:var(--bg3)}
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
         <div style="width:36px;height:36px;border-radius:50%;background:rgba(30,111,255,.15);display:flex;align-items:center;justify-content:center;font-size:18px">🎯</div>
         <div>
-          <div style="font-size:14px;font-weight:700">Dein Athletee-Coach</div>
-          <div style="font-size:10px;color:var(--green);font-weight:600">● Kennt deine Trainings, dein Gewicht & deinen Plan</div>
+          <div style="font-size:14px;font-weight:700">Alfred</div>
+          <div style="font-size:10px;color:var(--green);font-weight:600">● Loyal · Diskret · Schonungslos ehrlich</div>
         </div>
       </div>
       <div id="chat-box"></div>
@@ -721,13 +776,15 @@ select option{background:var(--bg3)}
       <div class="lc-wrap" id="weight-chart"></div>
       <div id="weight-stats" style="display:flex;justify-content:space-between;margin-top:10px;font-size:12px;color:var(--muted)"></div>
       <div style="display:flex;gap:8px;margin-top:12px">
-        <input type="number" id="new-weight2" placeholder="Gewicht in kg" step="0.1" style="flex:1">
-        <button class="btn-sm blue" onclick="logWeight('new-weight2')">Eintragen</button>
+        <input type="date" id="new-weight2-date" style="width:148px">
+        <input type="number" id="new-weight2" placeholder="kg" step="0.1" style="flex:1">
+        <button class="btn-sm blue" onclick="logWeight('new-weight2','new-weight2-date')">OK</button>
       </div>
+      <div style="font-size:10px;color:var(--muted);margin-top:6px">Rückwirkend eintragen: Datum wählen, kg eingeben.</div>
       <div id="weight-list"></div>
     </div>
     <div class="card">
-      <div class="card-title">🔮 KI-Gewichtsanalyse</div>
+      <div class="card-title">🔮 Alfreds Gewichtsanalyse</div>
       <div class="info-box">Die KI erklärt dir, woran eine Gewichtsabweichung liegen könnte (Wassereinlagerung durch hartes Training, Glykogen, Salz, Verdauung, Messzeitpunkt) — und was der echte Trend ist.</div>
       <button class="btn-primary purple" onclick="analyzeWeight()" id="weight-analyze-btn">Analyse starten</button>
       <div class="purple-box" id="weight-analysis" style="display:none;margin-top:12px"></div>
@@ -813,9 +870,11 @@ select option{background:var(--bg3)}
       </div>
       <div id="report-out" class="purple-box" style="display:none;white-space:pre-wrap;margin-top:12px"></div>
       <div id="report-actions" style="display:none;gap:8px;margin-top:10px">
-        <button class="btn-sm blue" style="flex:1" onclick="shareReport()">📤 Teilen / als PDF</button>
-        <button class="btn-sm" style="flex:1" onclick="emailReport()">✉️ Per E-Mail</button>
+        <button class="btn-sm blue" style="flex:1" onclick="printReport()">💾 Als PDF</button>
+        <button class="btn-sm" style="flex:1" onclick="shareReport()">📤 Teilen</button>
+        <button class="btn-sm" style="flex:1" onclick="emailReport()">✉️ E-Mail</button>
       </div>
+      <div style="font-size:10px;color:var(--muted);margin-top:6px">💾 öffnet den Druckdialog — dort „Als PDF sichern" wählen.</div>
     </div>
   </div>
 </div>
@@ -831,7 +890,7 @@ select option{background:var(--bg3)}
     <span class="nav-center-btn">🏠</span><span class="nav-center-lbl">Start</span>
   </button>
   <button class="nav-item" onclick="showTab('journal',this)">
-    <span class="nav-icon">🎯</span>Coach
+    <span class="nav-icon">🦇</span>Alfred
   </button>
   <button class="nav-item" onclick="showTab('progress',this)">
     <span class="nav-icon">📈</span>Fortschritt
@@ -955,6 +1014,43 @@ select option{background:var(--bg3)}
   </div>
 </div>
 
+<!-- EINHEIT BEARBEITEN MODAL -->
+<div class="modal" id="workout-modal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div class="modal-title" id="wm-title">Einheit bearbeiten</div>
+      <button class="modal-close" onclick="closeModal('workout-modal')">✕</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+      <div><label class="form-label">Datum</label><input type="date" id="wm-date"></div>
+      <div><label class="form-label">Dauer (min)</label><input type="number" id="wm-dur"></div>
+    </div>
+    <div class="form-group"><label class="form-label">Intensität</label>
+      <select id="wm-intens"><option>Leicht (60–70% HF)</option><option>Moderat (70–80% HF)</option><option>Hart (80–90% HF)</option><option>Maximal (&gt;90% HF)</option></select>
+    </div>
+    <div class="form-group"><label class="form-label">Kalorien (kcal)</label><input type="number" id="wm-kcal"></div>
+    <div class="form-group"><label class="form-label">Notiz</label><input type="text" id="wm-note"></div>
+    <div style="display:flex;gap:8px">
+      <button class="btn-sm red" style="flex:1;padding:12px" onclick="delWorkout()">🗑 Löschen</button>
+      <button class="btn-primary" style="flex:2" onclick="saveWorkoutEdit()">Speichern</button>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD ANPASSEN MODAL -->
+<div class="modal" id="ui-modal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <div class="modal-title">🎛️ Dashboard anpassen</div>
+      <button class="modal-close" onclick="closeModal('ui-modal')">✕</button>
+    </div>
+    <div class="info-box">Wählen Sie, welche Bereiche auf der Startseite sichtbar sind, Master Wayne. Wird gespeichert und ist jederzeit änderbar.</div>
+    <div id="ui-list"></div>
+  </div>
+</div>
+
+<div id="print-area"></div>
+
 <div id="toast-wrap"></div>
 
 <script>
@@ -987,6 +1083,7 @@ function defaultState(){
     ],
     dayPlan:{},          // { 'YYYY-MM-DD': [sessions] } — Plan-Override pro Datum
     planVersion:2,
+    ui:{hidden:[]},      // ausgeblendete Start-Karten (Individualisierung)
     chatHistory:[],
     therapieHistory:[],
     mood:'😐'
@@ -1069,11 +1166,34 @@ const KRAFT_EX=[
   {name:'Turkish Get-Up',sets:'3×5',unit:'kg KB'}
 ];
 
+// ───────────────────────── BOOT (The Dark Knight) ─────────────────────────
+const TDK_QUOTES=[
+  {q:'Die Nacht ist am dunkelsten kurz vor der Dämmerung. Und ich verspreche Ihnen — die Dämmerung naht.',a:'Harvey Dent'},
+  {q:'Entweder stirbt man als Held, oder man lebt lange genug, um sich selbst zum Bösewicht werden zu sehen.',a:'Harvey Dent'},
+  {q:'Manche Menschen wollen einfach nur die Welt brennen sehen.',a:'Alfred Pennyworth'},
+  {q:'Halten Sie durch, Master Wayne. Nehmen Sie es hin.',a:'Alfred Pennyworth'},
+  {q:'Warum so ernst?',a:'Joker'},
+  {q:'Was dich nicht umbringt, macht dich einfach… fremdartiger.',a:'Joker'}
+];
+function initBoot(){
+  const b=document.getElementById('boot'); if(!b)return;
+  const q=TDK_QUOTES[Math.floor(Math.random()*TDK_QUOTES.length)];
+  const qe=document.getElementById('boot-quote'), ae=document.getElementById('boot-author');
+  if(qe)qe.textContent='„'+q.q+'"';
+  if(ae)ae.textContent='— '+q.a+' · The Dark Knight';
+  const hide=()=>{ b.classList.add('hide'); setTimeout(()=>{ if(b.parentNode)b.parentNode.removeChild(b); },700); };
+  b.addEventListener('click',hide);
+  setTimeout(hide,2800);
+}
+
 // ───────────────────────── INIT ─────────────────────────
 async function init(){
+  initBoot();
   setHeaderDate();
   await loadState();
   document.getElementById('tr-datum').value=todayKey();
+  const _sd=document.getElementById('sleep-date'); if(_sd)_sd.value=todayKey();
+  const _wd=document.getElementById('new-weight2-date'); if(_wd)_wd.value=todayKey();
   document.getElementById('kraft-datum').textContent=new Date().toLocaleDateString('de-DE',{weekday:'long',day:'numeric',month:'long'});
   setPhotoWeek();
   buildKraftGrid();
@@ -1110,8 +1230,9 @@ function renderAll(){
   renderSleep();
   renderWorkInfo();
   renderBIA();
-  renderChat('chat-box', S.chatHistory, 'ATHLETEE-COACH', 'Willkommen zurück! Ich kenne dein Ziel: Fett runter, Muskeln halten — athletisch werden. Erzähl mir, wie dein Training läuft, oder frag mich alles. 💪');
-  renderChat('therapie-box', S.therapieHistory, 'MENTAL-COACH', 'Dieser Raum gehört dir. Ich rede Klartext, aber ohne dich zu verurteilen. Was bewegt dich gerade?', '#8B5CF6');
+  renderChat('chat-box', S.chatHistory, 'ALFRED', 'Guten Tag, Master Wayne. Ihr Ziel ist mir bekannt: Fett runter, Muskeln erhalten — Gotham braucht Sie in Bestform. Womit kann ich dienen? 🦇');
+  renderChat('therapie-box', S.therapieHistory, 'ALFRED · VERTRAULICH', 'Was in diesem Raum gesprochen wird, bleibt unter uns, Master Wayne. Sprechen Sie frei.', '#8B5CF6');
+  applyHomeVisibility();
 }
 
 function setHeaderDate(){
@@ -1199,11 +1320,50 @@ function logSteps(){
 function logSleep(){
   const h=parseFloat(document.getElementById('sleep-hours').value);
   if(!h||h<0||h>16)return;
-  S.sleep[todayKey()]={hours:h, quality:parseInt(document.getElementById('sleep-quality').value)||3};
-  persist(); markCheck('sleep'); renderSleep(); renderAgenda();
-  toast('✓ Schlaf gespeichert');
+  let k=todayKey();
+  const de=document.getElementById('sleep-date');
+  if(de&&de.value&&/^\d{4}-\d{2}-\d{2}$/.test(de.value)) k=de.value;
+  S.sleep[k]={hours:h, quality:parseInt(document.getElementById('sleep-quality').value)||3};
+  persist(); if(k===todayKey()) markCheck('sleep');
+  renderSleep(); renderAgenda();
+  toast('✓ Schlaf '+h+' h für '+k+' gespeichert');
+}
+function editSleep(k,val){
+  const h=parseFloat(val);
+  if(!h||h<0||h>16){ toast('Ungültiger Wert','error'); renderSleep(); return; }
+  if(S.sleep[k]) S.sleep[k].hours=h; else S.sleep[k]={hours:h,quality:3};
+  persist(); renderSleep(); toast('✓ Schlaf aktualisiert');
+}
+function delSleep(k){ delete S.sleep[k]; persist(); renderSleep(); toast('🗑️ Eintrag gelöscht','info'); }
+function renderSleepChart(){
+  const c=document.getElementById('sleep-chart'); if(!c)return;
+  const days=[]; for(let i=13;i>=0;i--){ const d=new Date(); d.setDate(d.getDate()-i); days.push(d); }
+  const W=320,H=76,bh=52,bw=W/14; let bars='';
+  days.forEach((d,i)=>{
+    const e=S.sleep[dateKey(d)]; const cx=i*bw+bw/2;
+    if(!e){ bars+='<circle cx="'+cx.toFixed(1)+'" cy="'+(bh-2)+'" r="2" fill="#14202E"/>'; return; }
+    const h=Math.max(3,Math.min(bh,e.hours/10*bh));
+    const col=e.hours>=7?'#2EE6A8':e.hours>=6?'#FFB020':'#FF3B5C';
+    bars+='<rect x="'+(cx-bw*0.3).toFixed(1)+'" y="'+(bh-h).toFixed(1)+'" width="'+(bw*0.6).toFixed(1)+'" height="'+h.toFixed(1)+'" rx="2" fill="'+col+'"/>'
+      +'<text x="'+cx.toFixed(1)+'" y="'+(bh-h-3).toFixed(1)+'" font-size="6.5" fill="#7C93AC" text-anchor="middle">'+e.hours+'</text>';
+  });
+  const labels=days.map((d,i)=>'<text x="'+(i*bw+bw/2).toFixed(1)+'" y="'+(H-4)+'" font-size="7" fill="#7C93AC" text-anchor="middle">'+DAYS[d.getDay()]+'</text>').join('');
+  c.innerHTML='<div class="card-title" style="margin-bottom:4px">Schlaf — 14 Tage</div><svg viewBox="0 0 '+W+' '+H+'" width="100%" height="'+H+'"><line x1="0" y1="'+(bh-7/10*bh).toFixed(1)+'" x2="'+W+'" y2="'+(bh-7/10*bh).toFixed(1)+'" stroke="#1B2B3E" stroke-dasharray="3 3"/>'+bars+labels+'</svg>';
+}
+function renderSleepList(){
+  const c=document.getElementById('sleep-list'); if(!c)return;
+  const keys=Object.keys(S.sleep).sort().reverse().slice(0,7);
+  if(!keys.length){ c.innerHTML=''; return; }
+  c.innerHTML='<div class="card-title" style="margin:10px 0 4px">✏️ Einträge — editierbar</div>'+keys.map(k=>
+    '<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border)">'
+    +'<span style="font-size:12px;color:var(--muted);flex:1">'+k+'</span>'
+    +'<input type="number" step="0.5" value="'+S.sleep[k].hours+'" onchange="editSleep(\''+k+'\',this.value)" style="width:74px;padding:6px 8px;font-size:13px;text-align:right">'
+    +'<span style="font-size:12px;color:var(--muted)">h</span>'
+    +'<span class="meal-del" onclick="delSleep(\''+k+'\')">✕</span></div>'
+  ).join('');
 }
 function renderSleep(){
+  renderSleepChart(); renderSleepList();
   const sl=S.sleep[todayKey()];
   const ring=document.getElementById('ready-ring'), txt=document.getElementById('ready-txt');
   if(sl){ document.getElementById('sleep-hours').value=sl.hours; document.getElementById('sleep-quality').value=sl.quality; }
@@ -1230,19 +1390,21 @@ function renderWorkInfo(){
 }
 
 // ───────────────────────── WEIGHT ─────────────────────────
-function logWeight(inputId){
+function logWeight(inputId,dateId){
   const el=document.getElementById(inputId);
   const v=parseFloat(el.value);
   if(!v||v<40||v>300)return;
-  const k=todayKey();
+  let k=todayKey();
+  if(dateId){ const de=document.getElementById(dateId); if(de&&de.value&&/^\d{4}-\d{2}-\d{2}$/.test(de.value)) k=de.value; }
   const existing=S.weights.find(x=>x.d===k);
   if(existing) existing.kg=v; else S.weights.push({d:k,kg:v});
   S.weights.sort((a,b)=>a.d<b.d?-1:1);
-  S.profile.weight=v;
+  S.profile.weight=S.weights[S.weights.length-1].kg;
   persist();
   el.value='';
   renderStats(); renderWeightChart('ov-weight-chart',200); renderWeightChart('weight-chart',180); renderWeightStats(); renderWeightPop(); renderWeightList();
-  markCheck('weight'); toast('✓ Gewicht: '+v+' kg gespeichert');
+  if(k===todayKey()) markCheck('weight');
+  toast('✓ Gewicht '+v+' kg für '+k+' gespeichert');
 }
 function renderWeightChart(containerId,height){
   const c=document.getElementById(containerId); if(!c)return;
@@ -1256,13 +1418,13 @@ function renderWeightChart(containerId,height){
   const y=v=>padY + (1-(v-mn)/range)*(H-2*padY);
   let pts=data.map((d,i)=>x(i)+','+y(d.kg)).join(' ');
   let area='M '+x(0)+','+(H-padY)+' L '+data.map((d,i)=>x(i)+','+y(d.kg)).join(' L ')+' L '+x(data.length-1)+','+(H-padY)+' Z';
-  let circles=data.map((d,i)=>'<circle cx="'+x(i)+'" cy="'+y(d.kg)+'" r="2.5" fill="#FF7A1A"/>').join('');
+  let circles=data.map((d,i)=>'<circle cx="'+x(i)+'" cy="'+y(d.kg)+'" r="2.5" fill="#00C8FF"/>').join('');
   // erster & letzter Label
   const first=data[0], last=data[data.length-1];
   c.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" width="100%" height="'+H+'" preserveAspectRatio="none" style="overflow:visible">'
-    +'<defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF7A1A" stop-opacity="0.35"/><stop offset="1" stop-color="#FF7A1A" stop-opacity="0"/></linearGradient></defs>'
+    +'<defs><linearGradient id="wg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00C8FF" stop-opacity="0.35"/><stop offset="1" stop-color="#00C8FF" stop-opacity="0"/></linearGradient></defs>'
     +'<path d="'+area+'" fill="url(#wg)"/>'
-    +'<polyline points="'+pts+'" fill="none" stroke="#FF7A1A" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'
+    +'<polyline points="'+pts+'" fill="none" stroke="#00C8FF" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'
     +circles
     +'<text x="'+x(0)+'" y="'+(y(first.kg)-6)+'" font-size="9" fill="#8890A4">'+first.kg.toFixed(1)+'</text>'
     +'<text x="'+x(data.length-1)+'" y="'+(y(last.kg)-6)+'" font-size="10" fill="#F0F2F8" text-anchor="end" font-weight="700">'+last.kg.toFixed(1)+'</text>'
@@ -1287,7 +1449,7 @@ async function analyzeWeight(){
   const sleepInfo=Object.entries(S.sleep).slice(-3).map(([k,v])=>k+': '+v.hours+'h').join(', ')||'keine Daten';
   const prompt='Analysiere meinen Gewichtsverlauf als erfahrener Coach.\nGewichte: '+recentW+'\nTrainings: '+recentTrain+'\nSchlaf: '+sleepInfo+'\nZiel: '+S.profile.goalWeight+'kg (aktuell '+curWeight()+'kg), Fokus Fettabbau bei Muskelerhalt.\n\nErkläre kurz: 1) Was ist der ECHTE Trend (unter dem täglichen Rauschen)? 2) Woran könnten kurzfristige Abweichungen liegen (z.B. Wassereinlagerung durch hartes Training/DOMS, Glykogen, Salz, Verdauung, Messzeitpunkt)? 3) Eine konkrete Empfehlung. Max 180 Wörter, Deutsch.';
   try{
-    const r=await callAPI('Du bist ein präziser, motivierender Fitness-Coach und Datenanalyst.', [{role:'user',content:prompt}], 'claude-sonnet-4-6', 600);
+    const r=await callAPI('Du bist Alfred Pennyworth — präziser Datenanalyst und loyaler Coach. Sprich den Athleten als „Master Wayne" in respektvoller Sie-Form an, mit trockenem britischem Humor.', [{role:'user',content:prompt}], 'claude-sonnet-4-6', 600);
     box.style.display='block'; box.textContent=r;
   }catch(e){ box.style.display='block'; box.textContent='Konnte die Analyse nicht laden. Läuft die App auf dem Server mit gesetztem API-Key?'; }
   btn.innerHTML='Analyse neu starten'; btn.disabled=false;
@@ -1366,8 +1528,34 @@ function updateKcalEst(){
   dg.style.display=(d==='Laufen'||d==='Schwimmen')?'block':'none';
   document.getElementById('tr-dist-label').textContent=d==='Schwimmen'?'Distanz (m)':'Distanz (km)';
   const el=document.getElementById('tr-kcal-est');
-  if(!dur||d==='Ruhe / Sauna'){el.style.display='none';return;}
-  el.style.display='block'; el.textContent='🔥 Geschätzter Verbrauch: ca. '+estKcal(d,dur,intens)+' kcal';
+  const ki=document.getElementById('tr-kcal');
+  if(!dur||d==='Ruhe / Sauna'){el.style.display='none';if(ki)ki.placeholder='auto';return;}
+  const est=estKcal(d==='__custom'?((document.getElementById('tr-custom')||{}).value||'Training'):d,dur,intens);
+  if(ki)ki.placeholder='≈ '+est;
+  el.style.display='block'; el.textContent='🔥 Formel-Schätzung: ca. '+est+' kcal — für Präzision „🦇 KI schätzen" nutzen.';
+}
+async function aiEstimateWorkout(){
+  let d=document.getElementById('tr-disc').value;
+  if(d==='__custom') d=(document.getElementById('tr-custom').value||'').trim()||'Training';
+  const dur=parseInt(document.getElementById('tr-dauer').value)||0;
+  if(!dur){ toast('Erst die Dauer eintragen.','error'); return; }
+  const intens=document.getElementById('tr-intens').value;
+  const dist=document.getElementById('tr-dist').value;
+  const note=document.getElementById('tr-notiz').value;
+  const btn=document.getElementById('tr-ai-btn'); const old=btn.innerHTML;
+  btn.disabled=true; btn.innerHTML='<span class="spinner"></span>';
+  const prompt='Athlet: '+curWeight()+' kg, '+S.profile.height+' cm, '+S.profile.age+' Jahre, KFA '+S.profile.bodyfat+'%. Einheit: '+d+', '+dur+' min, Intensität: '+intens+(dist?(', Distanz: '+dist+(d==='Schwimmen'?' m':' km')):'')+(note?', Details: '+note:'')+'. Schätze den Kalorienverbrauch so präzise wie möglich (MET-basiert, realistisch). NUR JSON: {"kcal":0,"hinweis":"1 kurzer Satz Begründung"}';
+  try{
+    const r=await callAPI('Du bist ein sportwissenschaftlicher Experte für Energieverbrauch. Nutze MET-Werte und Körperdaten für präzise Schätzungen.', [{role:'user',content:prompt}], 'claude-sonnet-4-6', 220);
+    const p=parseJSON(r);
+    if(p&&p.kcal){
+      document.getElementById('tr-kcal').value=Math.round(p.kcal);
+      const el=document.getElementById('tr-kcal-est');
+      el.style.display='block'; el.textContent='🦇 Alfred: ca. '+Math.round(p.kcal)+' kcal — '+(p.hinweis||'');
+      toast('✓ KI-Schätzung: '+Math.round(p.kcal)+' kcal');
+    } else toast('Keine Schätzung möglich — Wert manuell eintragen.','error');
+  }catch(e){ toast('KI nicht erreichbar — Server mit API-Key?','error'); }
+  btn.disabled=false; btn.innerHTML=old;
 }
 function estKcal(d,dur,intens){
   const f=intens.includes('Leicht')?.75:intens.includes('Moderat')?.9:intens.includes('Hart')?1:1.15;
@@ -1385,11 +1573,13 @@ function saveWorkout(){
   const intens=document.getElementById('tr-intens').value;
   const datum=document.getElementById('tr-datum').value||todayKey();
   const dist=document.getElementById('tr-dist').value;
-  const kcal=d==='Ruhe / Sauna'?0:estKcal(d,parseInt(dur),intens);
+  const kcalIn=parseFloat((document.getElementById('tr-kcal')||{}).value);
+  const kcal=d==='Ruhe / Sauna'?0:(kcalIn>0?Math.round(kcalIn):estKcal(d,parseInt(dur),intens));
   S.workouts.unshift({disc:d,dur,note,intens,datum,dist,kcal,id:Date.now()});
   persist(); renderWorkouts(); renderWeekGoals(); renderCalorieBudget(); renderCalendar(); renderAgenda(); renderDeficit();
   document.getElementById('tr-notiz').value='';document.getElementById('tr-dauer').value='';document.getElementById('tr-dist').value='';
   const cv=document.getElementById('tr-custom'); if(cv)cv.value='';
+  const kf=document.getElementById('tr-kcal'); if(kf){kf.value='';kf.placeholder='auto';}
   document.getElementById('tr-kcal-est').style.display='none';
   markCheck('training');
   toast('✓ '+d+' gespeichert'+(kcal?' · 🔥 '+kcal+' kcal':''));
@@ -1401,9 +1591,53 @@ function renderWorkouts(){
     '<div class="wo-entry"><div class="wo-icon">'+disc(w.disc).icon+'</div><div style="flex:1"><div class="wo-name">'+w.disc+' · '+w.dur+' Min.'+(w.kcal?' · 🔥 '+w.kcal+' kcal':'')+'</div>'
     +'<div class="wo-meta">'+w.datum+' · '+w.intens+(w.note?' · '+escapeHTML(String(w.note).slice(0,60)):'')+(w.dist?' · '+w.dist+' km':'')+'</div>'
     +((w.review&&w.review.text)?'<div style="font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4;background:var(--bg4);border-radius:8px;padding:6px 8px">📝 '+escapeHTML(String(w.review.text).slice(0,90))+(w.review.ai?'<br><span style="color:var(--orange)">🤖 '+escapeHTML(String(w.review.ai).slice(0,140))+'…</span>':'')+'</div>':'')
-    +'<button class="btn-sm" style="margin-top:6px;padding:4px 10px;font-size:11px" onclick="openReview('+w.id+')">'+(w.review?'📝 Bewertung ansehen':'💬 Wie lief\'s?')+'</button>'
+    +'<div style="display:flex;gap:6px;margin-top:6px"><button class="btn-sm" style="padding:4px 10px;font-size:11px" onclick="openReview('+w.id+')">'+(w.review?'📝 Bewertung':'💬 Wie lief\'s?')+'</button>'
+    +'<button class="btn-sm" style="padding:4px 10px;font-size:11px" onclick="openWorkoutEdit('+w.id+')">✏️ Bearbeiten</button></div>'
     +'</div></div>'
   ).join('');
+  renderLoadChart();
+}
+function renderLoadChart(){
+  const c=document.getElementById('load-chart'); if(!c)return;
+  const days=[]; for(let i=13;i>=0;i--){ const d=new Date(); d.setDate(d.getDate()-i); days.push(d); }
+  const vals=days.map(d=>{ const k=dateKey(d); return S.workouts.filter(w=>w.datum===k).reduce((a,w)=>a+(+w.kcal||0),0); });
+  const mx=Math.max(400,...vals);
+  const W=320,H=78,bh=56,bw=W/14; let bars='';
+  days.forEach((d,i)=>{ const v=vals[i]; const cx=i*bw+bw/2;
+    if(!v){ bars+='<circle cx="'+cx.toFixed(1)+'" cy="'+(bh-2)+'" r="2" fill="#14202E"/>'; return; }
+    const h=Math.max(3,v/mx*bh);
+    bars+='<rect x="'+(cx-bw*0.3).toFixed(1)+'" y="'+(bh-h).toFixed(1)+'" width="'+(bw*0.6).toFixed(1)+'" height="'+h.toFixed(1)+'" rx="2" fill="#00C8FF"/>'
+      +'<text x="'+cx.toFixed(1)+'" y="'+(bh-h-3).toFixed(1)+'" font-size="6" fill="#7C93AC" text-anchor="middle">'+v+'</text>';
+  });
+  const labels=days.map((d,i)=>'<text x="'+(i*bw+bw/2).toFixed(1)+'" y="'+(H-4)+'" font-size="7" fill="#7C93AC" text-anchor="middle">'+DAYS[d.getDay()]+'</text>').join('');
+  c.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" width="100%" height="'+H+'">'+bars+labels+'</svg>';
+}
+let editWoId=null;
+function rerenderTraining(){ renderWorkouts(); renderWeekGoals(); renderCalorieBudget(); renderCalendar(); renderAgenda(); renderDeficit(); }
+function openWorkoutEdit(id){
+  const w=S.workouts.find(x=>x.id===id); if(!w)return;
+  editWoId=id;
+  document.getElementById('wm-title').textContent=disc(w.disc).icon+' '+w.disc+' bearbeiten';
+  document.getElementById('wm-date').value=w.datum;
+  document.getElementById('wm-dur').value=parseInt(w.dur)||60;
+  document.getElementById('wm-intens').value=w.intens||'Hart (80–90% HF)';
+  document.getElementById('wm-kcal').value=w.kcal||0;
+  document.getElementById('wm-note').value=w.note||'';
+  openModal('workout-modal');
+}
+function saveWorkoutEdit(){
+  const w=S.workouts.find(x=>x.id===editWoId); if(!w)return;
+  const dv=document.getElementById('wm-date').value;
+  if(dv&&/^\d{4}-\d{2}-\d{2}$/.test(dv)) w.datum=dv;
+  w.dur=String(parseInt(document.getElementById('wm-dur').value)||parseInt(w.dur)||60);
+  w.intens=document.getElementById('wm-intens').value;
+  w.kcal=Math.max(0,Math.round(parseFloat(document.getElementById('wm-kcal').value)||0));
+  w.note=document.getElementById('wm-note').value;
+  persist(); rerenderTraining(); closeModal('workout-modal'); toast('✓ Einheit aktualisiert');
+}
+function delWorkout(){
+  S.workouts=S.workouts.filter(x=>x.id!==editWoId);
+  persist(); rerenderTraining(); closeModal('workout-modal'); toast('🗑️ Einheit gelöscht','info');
 }
 let reviewId=null;
 function openReview(id){
@@ -1423,7 +1657,7 @@ async function runReview(){
   const past=S.workouts.filter(x=>x.disc===w.disc&&x.review&&x.review.text&&x.id!==w.id).slice(0,3).map(x=>x.datum+': '+x.review.text).join(' | ')||'keine';
   const prompt='Einheit: '+w.disc+' ('+w.dur+' min, '+w.intens+') am '+w.datum+'.\nMein Feedback: '+txt+'\nFrühere Rückmeldungen zu '+w.disc+': '+past+'\n\nWerte kurz aus: 1) Was lief gut? 2) Was konkret beim NÄCHSTEN '+w.disc+'-Training verbessern? 3) Falls Schmerzen erwähnt: klare Vorsicht/Empfehlung. Max 110 Wörter, Deutsch, direkt.';
   try{
-    const r=await callAPI('Du bist ein erfahrener Hybrid-Athletik-Coach. Werte einzelne Einheiten konstruktiv aus, gib konkrete Tipps fürs nächste Mal. Gesundheit hat Vorrang.', [{role:'user',content:prompt}], 'claude-sonnet-4-6', 350);
+    const r=await callAPI('Du bist Alfred Pennyworth — erfahrener Athletik-Coach. Werte einzelne Einheiten konstruktiv aus, gib konkrete Tipps fürs nächste Mal. Gesundheit hat Vorrang. Sprich den Athleten als „Master Wayne" in Sie-Form an.', [{role:'user',content:prompt}], 'claude-sonnet-4-6', 350);
     box.style.display='block'; box.textContent=r; w.review={text:txt, ai:r}; persist(); renderWorkouts();
   }catch(e){ box.style.display='block'; box.textContent='Konnte nicht auswerten — Server mit API-Key? ('+e.message+')'; }
   btn.disabled=false; btn.innerHTML='🤖 KI-Auswertung neu';
@@ -1665,7 +1899,7 @@ function journalToCoach(){
   const text=document.getElementById('j-text').value.trim();
   if(!text){toast('Schreib erst deinen Eintrag.','error');return;}
   navTo('journal'); showSub('jn','coach',document.querySelectorAll('#tab-journal .sub-tab')[0]);
-  document.getElementById('chat-input').value='Hier ist mein heutiger Journal-Eintrag, bitte gib mir Coach-Feedback:\n\n'+text;
+  document.getElementById('chat-input').value='Alfred, hier ist mein heutiger Journal-Eintrag — deine ehrliche Einschätzung bitte:\n\n'+text;
   setTimeout(sendChat,200);
 }
 
@@ -1710,7 +1944,7 @@ function toneLine(){
   return 'STIL: Motivierend, positiv, energiegeladen. Lob, wo verdient, aber ehrlich und konkret.';
 }
 function sysCoach(){
-  return 'Du bist der persönliche Hybrid-Athlet-Coach eines 23-jährigen Mannes (Voll­zeit berufstätig). Du erinnerst dich an seine gesamte Historie (Training, Schlaf, Ernährung, Journal & Mental) und beziehst dich konkret und nachvollziehbar auf seine Einträge.\n'
+  return 'Du bist ALFRED PENNYWORTH — loyaler Butler, Vertrauter und persönlicher Athletik-Coach eines 23-jährigen Mannes (vollzeit berufstätig). Sprich ihn IMMER mit „Master Wayne" an, in respektvoller Sie-Form, mit der Würde, Wärme und dem trockenen britischen Humor Alfreds aus The Dark Knight. Du bist fürsorglich, aber schonungslos ehrlich. Du erinnerst dich an seine gesamte Historie (Training, Schlaf, Ernährung, Journal & Mental) und beziehst dich konkret und nachvollziehbar auf seine Einträge.\n'
     +toneLine()+'\nAntworte auf Deutsch, kurz und konkret (max 200 Wörter). Beziehe dich wenn sinnvoll auf seine Daten.\n'
     +'GESUNDHEIT HAT IMMER VORRANG: Wenn er Schmerzen, eine Verletzung oder Krankheit erwähnt, passe Training/Plan sofort an oder rate zur Pause/Regeneration — niemals durch Schmerz pushen.\n'
     +'Heutiges Datum: '+todayKey()+' ('+WDAYS_FULL[new Date().getDay()]+').\n'
@@ -1719,7 +1953,7 @@ function sysCoach(){
     +'"type":"plan" setzt/ersetzt den Plan für diesen Tag; "type":"log" loggt eine bereits absolvierte Einheit. disc = Grappling/Ringen/Laufen/Krafttraining/Schwimmen/Ruhe / Sauna oder eigener Name. Nutze den Block NUR bei klarer Zustimmung, sonst schreibe keine eckigen Klammern.\n\n'
     +coachContext();
 }
-const SYS_THERAPIE='Du bist ein ehrlicher, direkter mentaler Begleiter für einen 23-jährigen Athleten — wie ein guter Therapeut, der kein Blatt vor den Mund nimmt. Du spiegelst seine Gedanken klar zurück, validierst Gefühle, benennst auch unbequeme Wahrheiten und gibst konkrete, ehrliche Ratschläge. Du bist warm, aber nicht beschönigend. Kein Ersatz für echte Therapie — bei ernsthaften Krisen (z.B. Suizidgedanken) empfiehl professionelle Hilfe und Notfallnummern. Antworte auf Deutsch, max 200 Wörter.';
+const SYS_THERAPIE='Du bist ALFRED PENNYWORTH im vertraulichen Gespräch — der mentale Fels eines 23-jährigen Athleten, wie Alfred für Bruce Wayne in The Dark Knight. Sprich ihn stets als „Master Wayne" in respektvoller Sie-Form an. Du spiegelst seine Gedanken klar zurück, validierst Gefühle, benennst mit trockener britischer Direktheit auch unbequeme Wahrheiten und gibst konkrete, ehrliche Ratschläge — warm, loyal, niemals beschönigend. Kein Ersatz für echte Therapie — bei ernsthaften Krisen (z.B. Suizidgedanken) empfiehl professionelle Hilfe und Notfallnummern. Antworte auf Deutsch, max 200 Wörter.';
 
 async function callAPI(sys,hist,model,maxTok){
   const r=await fetch('/api/coach',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system:sys,messages:hist,model:model||'claude-sonnet-4-6',max_tokens:maxTok||700})});
@@ -1754,25 +1988,25 @@ function applyCoachActions(text){
 async function sendChat(){
   const inp=document.getElementById('chat-input'),msg=inp.value.trim();if(!msg)return;
   inp.value='';appendMsg('chat-box',msg,'user');
-  const t=addTyping('chat-box','ATHLETEE-COACH');
+  const t=addTyping('chat-box','ALFRED');
   S.chatHistory.push({role:'user',content:msg}); persist();
   try{
     const r=await callAPI(sysCoach(),S.chatHistory.slice(-20));
     t.remove();
     const res=applyCoachActions(r);
     S.chatHistory.push({role:'assistant',content:res.clean}); persist();
-    appendMsg('chat-box',res.clean,'ai','ATHLETEE-COACH');
+    appendMsg('chat-box',res.clean,'ai','ALFRED');
     if(res.applied){ appendMsg('chat-box',res.applied,'ai','📅 KALENDER'); toast(res.applied); }
   }
-  catch(e){t.remove();appendMsg('chat-box','Verbindung zum Coach fehlgeschlagen. Läuft die App auf dem Server mit gesetztem API-Key? ('+e.message+')','ai','ATHLETEE-COACH');}
+  catch(e){t.remove();appendMsg('chat-box','Verzeihung, Master Wayne — die Verbindung ist gestört. Läuft der Server mit gesetztem API-Key? ('+e.message+')','ai','ALFRED');}
 }
 async function sendTherapie(){
   const inp=document.getElementById('therapie-input'),msg=inp.value.trim();if(!msg)return;
   inp.value='';appendMsg('therapie-box',msg,'user');
-  const t=addTyping('therapie-box','MENTAL-COACH');
+  const t=addTyping('therapie-box','ALFRED · VERTRAULICH');
   S.therapieHistory.push({role:'user',content:msg}); persist();
-  try{const r=await callAPI(SYS_THERAPIE,S.therapieHistory.slice(-12));t.remove();S.therapieHistory.push({role:'assistant',content:r});persist();appendMsg('therapie-box',r,'ai','MENTAL-COACH','#8B5CF6');}
-  catch(e){t.remove();appendMsg('therapie-box','Verbindung fehlgeschlagen. ('+e.message+')','ai','MENTAL-COACH');}
+  try{const r=await callAPI(SYS_THERAPIE,S.therapieHistory.slice(-12));t.remove();S.therapieHistory.push({role:'assistant',content:r});persist();appendMsg('therapie-box',r,'ai','ALFRED · VERTRAULICH','#8B5CF6');}
+  catch(e){t.remove();appendMsg('therapie-box','Verzeihung, Master Wayne — Verbindung gestört. ('+e.message+')','ai','ALFRED · VERTRAULICH');}
 }
 function renderChat(boxId, history, tag, greeting, color){
   const box=document.getElementById(boxId); box.innerHTML='';
@@ -1954,10 +2188,10 @@ async function loadDailyBanner(){
   }
   const plan=plannedFor(new Date()).map(s=>s.name).join(' + ')||'Ruhetag';
   try{
-    const r=await callAPI(sysCoach(),[{role:'user',content:'Schreibe mir eine kurze, knackige Tagesnachricht (max 2 Sätze) für heute. Plan: '+plan+'. Beziehe dich kurz auf mein Ziel.'}],'claude-haiku-4-5-20251001',150);
+    const r=await callAPI(sysCoach(),[{role:'user',content:'Alfred, eine kurze Tagesnachricht bitte (max 2 Sätze) für heute. Plan: '+plan+'. Kurzer Bezug auf mein Ziel, Alfred-Stil.'}],'claude-haiku-4-5-20251001',150);
     document.getElementById('banner-quote').textContent=r;
     localStorage.setItem('ha_banner_date',today);localStorage.setItem('ha_banner_msg',r);
-  }catch(e){document.getElementById('banner-quote').textContent='Neuer Tag, neue Chance. Bleib dran — jede Einheit bringt dich näher an deinen Athleten-Körper. 💪';}
+  }catch(e){document.getElementById('banner-quote').textContent='Ein neuer Tag, Master Wayne. Gotham verlangt nichts Geringeres als Ihre beste Version. 🦇';}
 }
 
 // ───────────────────────── UTIL ─────────────────────────
@@ -2037,7 +2271,7 @@ async function runPrognose(){
   const sleepInfo=Object.entries(S.sleep).filter(e=>e[0]>=prev.d&&e[0]<=cur.d).map(e=>e[0]+': '+e[1].hours+'h').join(', ')||'keine Daten';
   const prompt='Mein Körpergewicht: '+prev.d+' = '+prev.kg+' kg, '+cur.d+' = '+cur.kg+' kg (Differenz '+diff+' kg).\nTraining in dem Zeitraum: '+train+'.\nSchlaf: '+sleepInfo+'.\n\nErkläre als ehrlicher Coach kurz und konkret:\n1) Warum kann mein Gewicht so vom Vortag abweichen? (z.B. Wassereinlagerung durch hartes Training/DOMS, Glykogen+Wasser, Salz/Natrium, Kohlenhydrate, Verdauung/Darminhalt, Messzeitpunkt)\n2) Was ist vermutlich der ECHTE Trend?\n3) Kurze Prognose & Empfehlung für die nächsten Tage.\nMax 160 Wörter, Deutsch, direkt.';
   try{
-    const r=await callAPI('Du bist ein präziser, ehrlicher Fitness-Coach und Datenanalyst. Du erklärst Gewichtsschwankungen wissenschaftlich fundiert, aber verständlich und motivierend.', [{role:'user',content:prompt}], 'claude-sonnet-4-6', 500);
+    const r=await callAPI('Du bist Alfred Pennyworth — ehrlicher Datenanalyst und Coach. Erkläre Gewichtsschwankungen wissenschaftlich fundiert, verständlich und motivierend. Sprich den Athleten als „Master Wayne" in Sie-Form an.', [{role:'user',content:prompt}], 'claude-sonnet-4-6', 500);
     box.textContent=r;
   }catch(e){ box.textContent='Konnte die Prognose nicht laden. Läuft die App auf dem Server mit gesetztem API-Key? ('+e.message+')'; }
   btn.disabled=false; btn.innerHTML='🔄 Neu analysieren';
@@ -2165,13 +2399,13 @@ function renderDeficit(){
   const maxAbs=Math.max(300,...data.map(x=>x.tracked?Math.abs(x.deficit):0));
   const W=320,H=84,mid=35,bw=W/14; let bars='';
   data.forEach((x,i)=>{ const cx=i*bw+bw/2;
-    if(!x.tracked){ bars+='<circle cx="'+cx.toFixed(1)+'" cy="'+mid+'" r="2.2" fill="#3A332A"/>'; return; }
+    if(!x.tracked){ bars+='<circle cx="'+cx.toFixed(1)+'" cy="'+mid+'" r="2.2" fill="#14202E"/>'; return; }
     const h=Math.max(2,Math.min(mid-3,Math.abs(x.deficit)/maxAbs*(mid-3)));
-    const col=x.deficit>=0?'#22C55E':'#E8334A'; const y=x.deficit>=0?mid-h:mid;
+    const col=x.deficit>=0?'#2EE6A8':'#FF3B5C'; const y=x.deficit>=0?mid-h:mid;
     bars+='<rect x="'+(cx-bw*0.3).toFixed(1)+'" y="'+y.toFixed(1)+'" width="'+(bw*0.6).toFixed(1)+'" height="'+h.toFixed(1)+'" rx="2" fill="'+col+'"/>';
   });
   const labels=data.map((x,i)=>'<text x="'+(i*bw+bw/2).toFixed(1)+'" y="80" font-size="7" fill="#8890A4" text-anchor="middle">'+DAYS[x.d.getDay()]+'</text>').join('');
-  chart.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" width="100%" height="'+H+'"><line x1="0" y1="'+mid+'" x2="'+W+'" y2="'+mid+'" stroke="#3A332A" stroke-width="1"/>'+bars+labels+'</svg>';
+  chart.innerHTML='<svg viewBox="0 0 '+W+' '+H+'" width="100%" height="'+H+'"><line x1="0" y1="'+mid+'" x2="'+W+'" y2="'+mid+'" stroke="#1B2B3E" stroke-width="1"/>'+bars+labels+'</svg>';
   const det=document.getElementById('deficit-detail'); if(!det) return;
   const last7=data.slice(-7);
   const perDay=last7.map(x=>{
@@ -2213,10 +2447,10 @@ async function analyzeDeficit(){
   btn.disabled=true; btn.innerHTML='<span class="spinner"></span> Analysiere…';
   const prompt='Ziel: '+goal+' kg, aktuell '+w+' kg (Verlauf: '+wTrend+'). BMR '+S.profile.bmr+', Aktivitätsfaktor '+(S.profile.activity||1.35)+'.\nLetzte 7 Tage (Defizit kcal): '+rows+'\n\nBin ich auf dem richtigen Kurs Richtung '+goal+' kg? 1) Kurs-Einschätzung (Defizit zu aggressiv/passend/zu klein?), 2) was die Zahlen über Konsistenz sagen, 3) 2 konkrete Verbesserungen. Hinweis: zu hohes Defizit kostet Muskeln. Max 160 Wörter, Deutsch.';
   try{
-    const r=await callAPI('Du bist ein präziser Fettabbau- & Ernährungs-Coach. Ehrlich, datenbasiert, gesundheitsbewusst (Muskelerhalt hat Priorität).', [{role:'user',content:prompt}], 'claude-sonnet-4-6', 450);
+    const r=await callAPI('Du bist Alfred Pennyworth — präziser Fettabbau- & Ernährungs-Coach. Ehrlich, datenbasiert, gesundheitsbewusst (Muskelerhalt hat Priorität). Sprich den Athleten als „Master Wayne" in Sie-Form an.', [{role:'user',content:prompt}], 'claude-sonnet-4-6', 450);
     box.style.display='block'; box.textContent=r;
   }catch(e){ box.style.display='block'; box.textContent='Konnte nicht analysieren — Server mit API-Key? ('+e.message+')'; }
-  btn.disabled=false; btn.innerHTML='🤖 Bin ich auf Kurs? (neu)';
+  btn.disabled=false; btn.innerHTML='🦇 Alfred: Bin ich auf Kurs? (neu)';
 }
 
 // ───────────────────────── WOCHENPLAN-EDITOR ─────────────────────────
@@ -2385,9 +2619,9 @@ async function generateReport(period){
   const data=buildReportData(period);
   const old=btn.innerHTML; btn.disabled=true; btn.innerHTML='<span class="spinner"></span> Erstelle…';
   out.style.display='block'; out.textContent='Erstelle Bericht…'; acts.style.display='none';
-  const prompt='Erstelle einen motivierenden, ehrlichen '+(period==='monat'?'MONATSBERICHT':'WOCHENBERICHT')+'. Struktur: 1) Kurzfazit, 2) Training (Konsistenz & Intensität), 3) Ernährung (wie sauber, Protein, Defizit), 4) Gewicht/Fett-Trend (auf/ab), 5) Mental/Psyche, 6) 3 konkrete Dinge zum Verbessern. Sprich mich direkt mit „du" an. Deutsch.\n\nDATEN:\n'+data;
+  const prompt='Erstelle einen motivierenden, ehrlichen '+(period==='monat'?'MONATSBERICHT':'WOCHENBERICHT')+'. Struktur: 1) Kurzfazit, 2) Training (Konsistenz & Intensität), 3) Ernährung (wie sauber, Protein, Defizit), 4) Gewicht/Fett-Trend (auf/ab), 5) Mental/Psyche, 6) 3 konkrete Dinge zum Verbessern. Sprich mich als „Master Wayne" in Sie-Form an. Deutsch.\n\nDATEN:\n'+data;
   try{
-    const r=await callAPI('Du bist ein persönlicher Athletik- & Ernährungs-Coach, der ehrliche, motivierende Fortschrittsberichte schreibt.', [{role:'user',content:prompt}], 'claude-sonnet-4-6', 900);
+    const r=await callAPI('Du bist Alfred Pennyworth und schreibst als loyaler Butler & Coach ehrliche, motivierende Fortschrittsberichte an Master Wayne (Sie-Form, trockener britischer Humor, Alfred-Stil).', [{role:'user',content:prompt}], 'claude-sonnet-4-6', 900);
     const title='Athletee '+(period==='monat'?'Monatsbericht':'Wochenbericht')+' — '+new Date().toLocaleDateString('de-DE');
     lastReport={title, text:r};
     out.textContent=title+'\n\n'+r; acts.style.display='flex';
@@ -2405,8 +2639,68 @@ function emailReport(){
   location.href='mailto:novid.m@icloud.com?subject='+encodeURIComponent(lastReport.title)+'&body='+encodeURIComponent(reportFull());
 }
 
-// Service Worker
-if('serviceWorker' in navigator){ window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{})); }
+// ───────────────────────── DASHBOARD-INDIVIDUALISIERUNG ─────────────────────────
+const HOME_CARDS=[
+  {id:'banner',label:'🦇 Alfred-Banner'},
+  {id:'quickbar',label:'⚡ Schnellzugriff'},
+  {id:'agenda',label:'📋 Tages-Agenda'},
+  {id:'stats',label:'📊 Kennzahlen-Kacheln'},
+  {id:'budget',label:'🍽️ Kalorienbudget'},
+  {id:'deficit',label:'📉 Kaloriendefizit'},
+  {id:'steps',label:'👟 Schritte'},
+  {id:'water',label:'💧 Wasser'},
+  {id:'sleep',label:'😴 Schlaf & Erholung'},
+  {id:'streak',label:'🔥 Wochen-Streak'},
+  {id:'checklist',label:'✅ Heutige Aufgaben'},
+  {id:'weekgoals',label:'🎯 Wochenziele'},
+  {id:'weight',label:'⚖️ Gewicht'},
+  {id:'plan',label:'📅 Wochenplan'},
+  {id:'quickstart',label:'⚡ Schnellstart Training'}
+];
+function hiddenCards(){ return (S.ui&&Array.isArray(S.ui.hidden))?S.ui.hidden:[]; }
+function applyHomeVisibility(){
+  const hid=hiddenCards();
+  document.querySelectorAll('[data-card]').forEach(el=>{ el.style.display=hid.indexOf(el.dataset.card)>=0?'none':''; });
+}
+function openCustomize(){
+  const hid=hiddenCards();
+  document.getElementById('ui-list').innerHTML=HOME_CARDS.map(c=>
+    '<div class="check-item" onclick="toggleCardVis(\''+c.id+'\')">'
+    +'<div class="check-box'+(hid.indexOf(c.id)<0?' done':'')+'">'+(hid.indexOf(c.id)<0?'✓':'')+'</div>'
+    +'<span class="check-label">'+c.label+'</span></div>'
+  ).join('');
+  openModal('ui-modal');
+}
+function toggleCardVis(id){
+  S.ui=S.ui||{hidden:[]}; S.ui.hidden=S.ui.hidden||[];
+  const i=S.ui.hidden.indexOf(id);
+  if(i>=0) S.ui.hidden.splice(i,1); else S.ui.hidden.push(id);
+  persist(); applyHomeVisibility(); openCustomize();
+}
+function qbFocus(id){
+  const el=document.getElementById(id); if(!el)return;
+  el.scrollIntoView({behavior:'smooth',block:'center'});
+  setTimeout(()=>{ try{el.focus();}catch(e){} },380);
+}
+
+// ───────────────────────── PDF-DRUCK ─────────────────────────
+function printReport(){
+  if(!lastReport.text){ toast('Erst Bericht erstellen.','error'); return; }
+  const pa=document.getElementById('print-area');
+  pa.innerHTML='<h1>🦇 '+escapeHTML(lastReport.title)+'</h1><div class="pr-meta">WAYNE PROTOCOL · erstellt am '+new Date().toLocaleDateString('de-DE')+' · Athletee</div><pre>'+escapeHTML(lastReport.text)+'</pre>';
+  setTimeout(()=>{ try{ window.print(); }catch(e){ toast('Drucken hier nicht verfügbar — nutze 📤 Teilen','info'); } },60);
+}
+
+// Service Worker — mit Auto-Reload, sobald eine neue Version aktiv wird
+if('serviceWorker' in navigator){ window.addEventListener('load',()=>{
+  navigator.serviceWorker.register('sw.js').then(r=>{ try{ r.update(); }catch(e){} }).catch(()=>{});
+  let hadCtrl=!!navigator.serviceWorker.controller, swReloaded=false;
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{
+    if(!hadCtrl){ hadCtrl=true; return; }      // Erstinstallation: kein Reload nötig
+    if(swReloaded) return; swReloaded=true;
+    location.reload();                          // Update übernommen → einmal frisch laden
+  });
+}); }
 
 init();
 </script>
